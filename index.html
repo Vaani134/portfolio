@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vani Parmar | Software Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080e1a;
+    --surface: #0d1526;
+    --surface2: #111d33;
+    --border: #1e2d47;
+    --text: #e2eaf5;
+    --muted: #7a92b4;
+    --accent: #4fc3f7;
+    --accent2: #7c6af7;
+    --accent3: #34d399;
+    --danger: #f87171;
+    --glow: rgba(79,195,247,0.12);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(8,14,26,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent); font-size: 1rem; letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none; font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── HERO ─── */
+  header {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute; top: -200px; right: -200px;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(79,195,247,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  header::after {
+    content: '';
+    position: absolute; bottom: -100px; left: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(124,106,247,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+  .hero { display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; }
+
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem; color: var(--accent3); letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .hero-eyebrow span { color: var(--muted); }
+
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    font-weight: 700; line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .accent { color: var(--accent); }
+  .accent2 { color: var(--accent2); }
+  .accent3 { color: var(--accent3); }
+
+  .hero-role {
+    font-size: 1.1rem; color: var(--muted); margin-bottom: 20px;
+    font-weight: 400;
+  }
+  .hero-role strong { color: var(--text); }
+
+  .hero-desc {
+    font-size: 1rem; color: var(--muted); max-width: 520px;
+    line-height: 1.75; margin-bottom: 32px;
+  }
+
+  .btn-group { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 36px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 22px; border-radius: 8px;
+    text-decoration: none; font-size: 0.9rem; font-weight: 600;
+    transition: all 0.2s; border: 1.5px solid transparent;
+  }
+  .btn-primary { background: var(--accent); color: #080e1a; }
+  .btn-primary:hover { background: #7dd6f7; }
+  .btn-outline { border-color: var(--border); color: var(--text); background: transparent; }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--glow); }
+
+  .hero-contact {
+    display: flex; flex-direction: column; gap: 6px;
+    font-size: 0.85rem; color: var(--muted);
+  }
+  .hero-contact span { display: flex; align-items: center; gap: 8px; }
+  .hero-contact a { color: var(--muted); text-decoration: none; }
+  .hero-contact a:hover { color: var(--accent); }
+
+  /* profile image */
+  .profile-wrap {
+    position: relative; flex-shrink: 0;
+  }
+  .profile-ring {
+    width: 280px; height: 280px; border-radius: 50%;
+    border: 2px solid var(--border);
+    padding: 5px;
+    background: linear-gradient(135deg, var(--surface2), var(--bg));
+    position: relative;
+  }
+  .profile-ring::before {
+    content: ''; position: absolute; inset: -3px; border-radius: 50%;
+    background: conic-gradient(var(--accent), var(--accent2), var(--accent3), var(--accent));
+    z-index: -1;
+  }
+  img.profile {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+    display: block;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 80px 0; }
+  section + section { border-top: 1px solid var(--border); }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem; color: var(--accent); letter-spacing: 0.15em;
+    text-transform: uppercase; margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 2rem; font-weight: 700; color: var(--text);
+    margin-bottom: 36px;
+  }
+
+  /* ─── SKILLS ─── */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; }
+  .skill-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-card h3 {
+    font-size: 0.8rem; font-family: 'JetBrains Mono', monospace;
+    color: var(--accent3); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .skill-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+  /* ─── EXPERIENCE ─── */
+  .timeline { position: relative; }
+  .timeline-item {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 32px; margin-bottom: 40px; align-items: start;
+  }
+  .tl-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem; color: var(--muted); padding-top: 4px;
+    text-align: right; line-height: 1.5;
+  }
+  .tl-content {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px 24px;
+    position: relative;
+  }
+  .tl-content::before {
+    content: ''; position: absolute; left: -9px; top: 18px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent); box-shadow: 0 0 8px var(--accent);
+  }
+  .tl-content h3 { font-size: 1rem; font-weight: 600; margin-bottom: 4px; }
+  .tl-content .company { color: var(--accent); font-size: 0.88rem; margin-bottom: 10px; }
+  .tl-content p { color: var(--muted); font-size: 0.9rem; }
+
+  /* ─── PROJECTS ─── */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px,1fr)); gap: 20px; }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 26px;
+    transition: border-color 0.25s, transform 0.25s;
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .project-card:hover { border-color: var(--accent2); transform: translateY(-3px); }
+  .project-header { display: flex; justify-content: space-between; align-items: start; }
+  .project-icon {
+    font-size: 1.6rem; width: 44px; height: 44px;
+    background: var(--surface2); border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-period {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--muted);
+  }
+  .project-card h3 { font-size: 1rem; font-weight: 600; }
+  .project-card p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+  .project-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .project-bullets li {
+    color: var(--muted); font-size: 0.87rem; line-height: 1.5;
+    padding-left: 16px; position: relative;
+  }
+  .project-bullets li::before {
+    content: '→'; position: absolute; left: 0; color: var(--accent3); font-size: 0.8rem;
+  }
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+  .tech-tag {
+    background: var(--surface2); border: 1px solid var(--border);
+    padding: 3px 10px; border-radius: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--accent);
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 28px 32px;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 20px;
+  }
+  .edu-degree { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+  .edu-uni { color: var(--accent); font-size: 0.9rem; margin-bottom: 6px; }
+  .edu-detail { color: var(--muted); font-size: 0.88rem; }
+  .edu-cgpa {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2rem; font-weight: 700; color: var(--accent3);
+    white-space: nowrap;
+  }
+  .edu-cgpa span { font-size: 0.8rem; color: var(--muted); display: block; text-align: center; }
+
+  /* ─── CERTS ─── */
+  .certs-section h3 {
+    font-size: 0.8rem; font-family: 'JetBrains Mono', monospace;
+    color: var(--accent3); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .certs-section + .certs-section { margin-top: 36px; }
+  .cert-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cert-tag {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 8px; font-size: 0.85rem;
+    color: var(--text); text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .cert-tag:hover { border-color: var(--accent); color: var(--accent); }
+  .cert-tag.no-link { cursor: default; }
+  .cert-tag.no-link:hover { border-color: var(--border); color: var(--text); }
+
+  /* ─── ACHIEVEMENTS ─── */
+  .achiev-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .achiev-item {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 8px 14px; border-radius: 8px; font-size: 0.85rem;
+    color: var(--text); text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .achiev-item:hover { border-color: var(--accent3); color: var(--accent3); }
+  .achiev-item.no-link { cursor: default; }
+  .achiev-item.no-link:hover { border-color: var(--border); color: var(--text); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 40px 20px; border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  footer p { color: var(--muted); font-size: 0.85rem; margin-bottom: 6px; }
+  footer a { color: var(--accent); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 16px; }
+    header { padding: 100px 20px 60px; }
+    .hero { grid-template-columns: 1fr; }
+    .profile-wrap { display: flex; justify-content: center; order: -1; }
+    .profile-ring { width: 200px; height: 200px; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+    .tl-date { text-align: left; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.6rem; }
+    .edu-card { flex-direction: column; }
+  }
+  @media (max-width: 520px) {
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">vani.parmar</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#certifications">Certs</a></li>
+  </ul>
+</nav>
+
+<header>
+  <div class="container">
+    <div class="hero">
+      <div>
+        <div class="hero-eyebrow">Available for opportunities <span>·</span> India</div>
+        <h1>Hi, I'm<br><span class="accent">Vani Parmar</span></h1>
+        <p class="hero-role"><strong>Software Developer</strong> · Python · Backend · Cybersecurity</p>
+        <p class="hero-desc">
+          Building secure, scalable backend systems and intelligent search solutions. 
+          Experienced in Python, Flask, Laravel, and applied security — from semantic search engines to reconnaissance tooling.
+        </p>
+        <div class="btn-group">
+          <a class="btn btn-primary" href="mailto:vaaniparmar58@gmail.com">✉ Email Me</a>
+          <a class="btn btn-outline" href="https://github.com/Vaani134" target="_blank">⌥ GitHub</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/vani-parmar-926bb4308/" target="_blank">↗ LinkedIn</a>
+        </div>
+        <div class="hero-contact">
+          <span>📧 <a href="mailto:vaaniparmar58@gmail.com">vaaniparmar58@gmail.com</a></span>
+          <span>📞 <a href="tel:+919427125733">+91 94271 25733</a></span>
+          <span>📍 Idar, Gujarat, India</span>
+        </div>
+      </div>
+      <div class="profile-wrap">
+        <div class="profile-ring">
+          <img src="vani_pic.png" class="profile" alt="Vani Parmar">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">01 · About</div>
+    <h2>About Me</h2>
+    <div class="skill-card" style="max-width:760px;">
+      <p style="color:var(--text); font-size:0.96rem; line-height:1.8;">
+        I'm a Software Developer with a strong focus on <span class="accent">Backend Development</span>, <span class="accent2">Cybersecurity</span>, and <span class="accent3">Intelligent Search Systems</span>. My work spans building secure authentication systems with passkey support, semantic product search engines, network reconnaissance tools, and scalable web applications. I enjoy working at the intersection of performance engineering and security — writing systems that are both robust and hard to break.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">02 · Technical Skills</div>
+    <h2>What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <p>Python, PHP, JavaScript, SQL, HTML, CSS</p>
+      </div>
+      <div class="skill-card">
+        <h3>Frameworks</h3>
+        <p>Flask, Laravel, SQLAlchemy</p>
+      </div>
+      <div class="skill-card">
+        <h3>Databases</h3>
+        <p>MySQL, SQLite, SQL Server, Redis</p>
+      </div>
+      <div class="skill-card">
+        <h3>Security Tools</h3>
+        <p>Nmap, Wireshark, Metasploit, DVWA, Shodan, VirusTotal</p>
+      </div>
+      <div class="skill-card">
+        <h3>Libraries & APIs</h3>
+        <p>RapidFuzz, DNSPython, Chart.js, PyQt5, URLScan</p>
+      </div>
+      <div class="skill-card">
+        <h3>Dev Tools</h3>
+        <p>Git, GitHub, Linux, Multithreading, MVC Architecture</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">03 · Experience</div>
+    <h2>Work History</h2>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="tl-date">Jan 2026<br>Present</div>
+        <div class="tl-content">
+          <h3>Software Development Intern</h3>
+          <div class="company">BrainBean Technolabs</div>
+          <p>Built Laravel backend systems including inventory management, semantic search with Scout, and implemented passkey-based authentication flows. Worked on multi-database synchronization and caching pipelines.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">Aug 2025<br>Dec 2025</div>
+        <div class="tl-content">
+          <h3>Cyber Security Intern</h3>
+          <div class="company">Hacklearn</div>
+          <p>Conducted vulnerability assessments, penetration testing exercises, and web security analysis. Produced structured security reports and explored attack surface enumeration techniques.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="tl-date">Jun 2025<br>Jul 2025</div>
+        <div class="tl-content">
+          <h3>Cyber Security Intern</h3>
+          <div class="company">InternPro (AICTE)</div>
+          <p>Hands-on practice with Nmap, DVWA, Metasploitable, and security testing methodologies including network enumeration and web application vulnerability scanning.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">04 · Projects</div>
+    <h2>Things I've Built</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🔍</div>
+          <div class="project-period">Jan 2026 – Present</div>
+        </div>
+        <h3>Scout — Intelligent Product Search System</h3>
+        <ul class="project-bullets">
+          <li>Fuzzy matching, synonym expansion, typo correction, and advanced ranking for accurate product discovery</li>
+          <li>Analytics dashboard, multi-database sync, caching, and image-based search for enhanced UX</li>
+        </ul>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">RapidFuzz</span><span class="tech-tag">SQLite</span><span class="tech-tag">Redis</span><span class="tech-tag">Chart.js</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🌐</div>
+          <div class="project-period">Aug 2025 – Jan 2026</div>
+        </div>
+        <h3>Web Reconnaissance Tool</h3>
+        <ul class="project-bullets">
+          <li>Non-intrusive OSINT: DNS, WHOIS, subdomain discovery using public sources only</li>
+          <li>Integrates Shodan, VirusTotal, URLScan for asset intelligence</li>
+          <li>Exports correlated findings as JSON, CSV, and PDF reports</li>
+        </ul>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">DNSPython</span><span class="tech-tag">WHOIS</span><span class="tech-tag">Shodan</span><span class="tech-tag">VirusTotal</span><span class="tech-tag">Nmap</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">🔐</div>
+          <div class="project-period">Jun 2025 – Jul 2025</div>
+        </div>
+        <h3>Password Manager</h3>
+        <ul class="project-bullets">
+          <li>Master-password access with AES encryption for secure vault storage</li>
+          <li>Clean MVC architecture for maintainable backend code</li>
+          <li>Secure authentication and password storage workflows</li>
+        </ul>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">SQLAlchemy</span><span class="tech-tag">MVC</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-icon">📡</div>
+          <div class="project-period">Jan 2025 – May 2025</div>
+        </div>
+        <h3>Advanced Network Scanner</h3>
+        <ul class="project-bullets">
+          <li>GUI-based tool for host discovery, port scanning, and OS fingerprinting via Nmap</li>
+          <li>Vulnerability mapping through a custom local CVE database</li>
+          <li>Multi-threaded scanning with JSON, PDF, and CSV export support</li>
+        </ul>
+        <div class="tech-stack">
+          <span class="tech-tag">Python</span><span class="tech-tag">PyQt5</span><span class="tech-tag">Nmap</span><span class="tech-tag">Multithreading</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-label">05 · Education</div>
+    <h2>Academic Background</h2>
+    <div style="display:flex; flex-direction:column; gap:16px;">
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">B.Tech — Agricultural Information Technology</div>
+          <div class="edu-uni">Anand Agricultural University</div>
+          <div class="edu-detail">2022 – 2026 &nbsp;·&nbsp; Anand, Gujarat, India</div>
+        </div>
+        <div class="edu-cgpa">7.32 <span>CGPA / 10</span></div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Senior Secondary — Class XII (Science, PCB)</div>
+          <div class="edu-uni">Ashish Vidyalaya, Kesharpura</div>
+          <div class="edu-detail">Mar 2022 &nbsp;·&nbsp; Gujarat, India</div>
+        </div>
+        <div class="edu-cgpa">68.3<span style="font-size:1rem;">%</span> <span>Percentage</span></div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-degree">Secondary — Class X</div>
+          <div class="edu-uni">J G Patel Vidyalaya, Aroda</div>
+          <div class="edu-detail">Mar 2020 &nbsp;·&nbsp; Gujarat, India</div>
+        </div>
+        <div class="edu-cgpa">78.5<span style="font-size:1rem;">%</span> <span>Percentage</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">06 · Certifications & Achievements</div>
+    <h2>Credentials</h2>
+
+    <div class="certs-section">
+      <h3>Courses & Training</h3>
+      <div class="cert-list">
+        <span class="cert-tag no-link">🔒 Cyber Security Course — The Tech Unique</span>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1pkcZsrSsEtgFPan5V2wVB99K-ct6t0sL/view?usp=drive_link" target="_blank">🛰 IIRS — Geodata Processing using Python & ML ↗</a>
+      </div>
+    </div>
+
+    <div class="certs-section">
+      <h3>Job Simulations</h3>
+      <div class="cert-list">
+        <a class="cert-tag" href="https://drive.google.com/file/d/1uewuNldsDo6UpX20Jm984JZI5bqnky-4/view?usp=drive_link" target="_blank">Deloitte ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1wZrXmyfYBwXVTG7QGNue7AdFExiNAqkv/view?usp=drive_link" target="_blank">TCS ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1dGZ83_XP-YjKPTWHyjg99bSQsXv43nl9/view?usp=drive_link" target="_blank">Telstra ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1_xGm4ivtPfKZ1S99OM0XdDhTzEUBed5S/view?usp=drive_link" target="_blank">AIG ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1FFCP4xUOSEzolAdqOPzZT__MhRGcRuqx/view?usp=drive_link" target="_blank">ANZ ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1sP-u2xam8oMydbAX3QM6kXsaiw70TpW7/view?usp=drive_link" target="_blank">CBRE ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1ypqiveKuVjNnCC3eGpp_Ri77FP8FBvb1/view?usp=drive_link" target="_blank">TATA ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1Vby6c2vyxq_J534km3QYqxIAGkkI0fpf/view?usp=drive_link" target="_blank">HP ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1vcDzPEYsetwpfyVpE6Cs6JuB6-HNFJMy/view?usp=drive_link" target="_blank">MasterCard ↗</a>
+        <a class="cert-tag" href="https://drive.google.com/file/d/1VieaJYUIxTiyP6jd1zooJIC54SHSAmF-/view?usp=drive_link" target="_blank">GIS ↗</a>
+      </div>
+    </div>
+
+    <div class="certs-section">
+      <h3>Hackathons</h3>
+      <div class="cert-list">
+        <a class="cert-tag" href="https://drive.google.com/file/d/1pF1NRBKN0zAE4xdHAfpU9AWwzMmubb0c/view?usp=drive_link" target="_blank">🏆 HackOrbit Nation Hackathon 2025 — MITS Gwalior ↗</a>
+      </div>
+    </div>
+
+    <div class="certs-section">
+      <h3>Co-curricular & Awards</h3>
+      <div class="achiev-list">
+        <a class="achiev-item" href="https://drive.google.com/file/d/1M3SsSSega147qP5jWLTp3p5tdebmgqBR/view?usp=drive_link" target="_blank">🥇 University Women Athletics Champion 2024–25 & 2025–26 ↗</a>
+        <a class="achiev-item" href="https://drive.google.com/file/d/12pvMH3UOzf06R9MZH7kWh3lXZoCzL4_/view?usp=drive_link" target="_blank">⛸ District Skating Champion U-17 (2020, 2022, 2024, 2025) ↗</a>
+        <span class="achiev-item no-link">🎓 College Secretary — AIASA 2024</span>
+        <a class="achiev-item" href="https://drive.google.com/file/d/1tQp5SniLkw4MY8THIoj7jO85mdZ4HJN4/view?usp=drive_link" target="_blank">🌿 NSS Certified Student Volunteer ↗</a>
+        <span class="achiev-item no-link">⛰ Basic Mountaineering Course — Grade A</span>
+        <span class="achiev-item no-link">🏐 Athletics & Volleyball University Player 2025</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Vani Parmar — Software Developer</p>
+  <p>
+    <a href="https://github.com/Vaani134" target="_blank">github.com/Vaani134</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/vani-parmar-926bb4308/" target="_blank">linkedin.com/in/vani-parmar-926bb4308</a>
+    &nbsp;·&nbsp;
+    <a href="mailto:vaaniparmar58@gmail.com">vaaniparmar58@gmail.com</a>
+  </p>
+</footer>
+
+</body>
+</html>

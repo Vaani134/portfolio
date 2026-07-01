@@ -251,25 +251,69 @@
   }
   .edu-cgpa span { font-size: 0.8rem; color: var(--muted); display: block; text-align: center; }
 
-  /* ─── CERTS ─── */
-  .certs-section h3 {
-    font-size: 0.8rem; font-family: 'JetBrains Mono', monospace;
-    color: var(--accent3); letter-spacing: 0.1em; text-transform: uppercase;
-    margin-bottom: 14px;
-  }
-  .certs-section + .certs-section { margin-top: 36px; }
-  .cert-list { display: flex; flex-wrap: wrap; gap: 10px; }
-  .cert-tag {
-    background: var(--surface); border: 1px solid var(--border);
-    padding: 8px 14px; border-radius: 8px; font-size: 0.85rem;
-    color: var(--text); text-decoration: none;
-    transition: border-color 0.2s, color 0.2s;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .cert-tag:hover { border-color: var(--accent); color: var(--accent); }
-  .cert-tag.no-link { cursor: default; }
-  .cert-tag.no-link:hover { border-color: var(--border); color: var(--text); }
+/* ─── CERTS ─── */
 
+.certs-section h3 {
+  font-size: 0.8rem;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.certs-section + .certs-section {
+  margin-top: 36px;
+}
+
+.cert-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 10px;
+}
+
+.cert-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: 0.3s ease;
+}
+
+.cert-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.2);
+}
+
+.cert-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cert-card p {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .cert-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .cert-gallery {
+    grid-template-columns: 1fr;
+  }
+}
   /* ─── ACHIEVEMENTS ─── */
   .achiev-list { display: flex; flex-wrap: wrap; gap: 10px; }
   .achiev-item {
@@ -349,7 +393,7 @@
       </div>
       <div class="profile-wrap">
         <div class="profile-ring">
-          <img src="vani_pic.png" class="profile" alt="Vani Parmar">
+          <img src="assets\vani_pic.png" class="profile" alt="Vani Parmar">
         </div>
       </div>
     </div>
@@ -567,21 +611,49 @@
       </div>
     </div>
 
-    <div class="certs-section">
-      <h3>Job Simulations</h3>
-      <div class="cert-list">
-        <a class="cert-tag" href="https://drive.google.com/file/d/1uewuNldsDo6UpX20Jm984JZI5bqnky-4/view?usp=drive_link" target="_blank">Deloitte ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1wZrXmyfYBwXVTG7QGNue7AdFExiNAqkv/view?usp=drive_link" target="_blank">TCS ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1dGZ83_XP-YjKPTWHyjg99bSQsXv43nl9/view?usp=drive_link" target="_blank">Telstra ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1_xGm4ivtPfKZ1S99OM0XdDhTzEUBed5S/view?usp=drive_link" target="_blank">AIG ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1FFCP4xUOSEzolAdqOPzZT__MhRGcRuqx/view?usp=drive_link" target="_blank">ANZ ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1sP-u2xam8oMydbAX3QM6kXsaiw70TpW7/view?usp=drive_link" target="_blank">CBRE ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1ypqiveKuVjNnCC3eGpp_Ri77FP8FBvb1/view?usp=drive_link" target="_blank">TATA ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1Vby6c2vyxq_J534km3QYqxIAGkkI0fpf/view?usp=drive_link" target="_blank">HP ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1vcDzPEYsetwpfyVpE6Cs6JuB6-HNFJMy/view?usp=drive_link" target="_blank">MasterCard ↗</a>
-        <a class="cert-tag" href="https://drive.google.com/file/d/1VieaJYUIxTiyP6jd1zooJIC54SHSAmF-/view?usp=drive_link" target="_blank">GIS ↗</a>
+      <div class="cert-gallery">
+
+          <a href="assets/Deloitte.jpg" target="_blank" class="cert-card">
+              <img src="assets/Deloitte.jpg" alt="Deloitte Certificate">
+              <p>Deloitte</p>
+          </a>
+
+          <a href="assets/Telstra.jpg" target="_blank" class="cert-card">
+              <img src="assets/Telstra.jpg" alt="Telstra Certificate">
+              <p>Telstra</p>
+          </a>
+
+          <a href="assets/AIG.jpg" target="_blank" class="cert-card">
+              <img src="assets/AIG.jpg" alt="AIG Certificate">
+              <p>AIG</p>
+          </a>
+
+          <a href="assets/ANZ.jpg" target="_blank" class="cert-card">
+              <img src="assets/ANZ.jpg" alt="ANZ Certificate">
+              <p>ANZ</p>
+          </a>
+
+          <a href="assets/CBRE.jpg" target="_blank" class="cert-card">
+              <img src="assets/CBRE.jpg" alt="CBRE Certificate">
+              <p>CBRE</p>
+          </a>
+
+          <a href="assets/TATA.jpg" target="_blank" class="cert-card">
+              <img src="assets/TATA.jpg" alt="TATA Certificate">
+              <p>TATA</p>
+          </a>
+
+          <a href="assets/HP.jpg" target="_blank" class="cert-card">
+              <img src="assets/HP.jpg" alt="HP Certificate">
+              <p>HP</p>
+          </a>
+
+          <a href="assets/Mastercard.jpg" target="_blank" class="cert-card">
+              <img src="assets/Mastercard.jpg" alt="Mastercard Certificate">
+              <p>Mastercard</p>
+          </a>
+
       </div>
-    </div>
 
     <div class="certs-section">
       <h3>Hackathons</h3>
